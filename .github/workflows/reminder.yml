@@ -1,8 +1,30 @@
-Date, Speaker
-2026-02-09, Sebastian
-2026-02-16, Alexandre
-2026-02-23, Pritwish
-2026-03-02, Awse
-2026-03-09, Yincheng
-2026-03-16, Sebastian
-2026-03-23, Alexandre
+name: Weekly Group Meeting Reminder
+
+on:
+  schedule:
+    - cron: "0 10 * * *"
+  workflow_dispatch:
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run script
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        run: python remind.py
+
