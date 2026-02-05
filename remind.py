@@ -5,7 +5,7 @@ import pandas as pd
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 
-REMINDER_DAYS = 5
+REMINDER_DAYS = 4
 CHANNEL_ID = "C07HA12JP1C"
 
 slack = WebClient(token=os.environ["SLACK_BOT_TOKEN"])
