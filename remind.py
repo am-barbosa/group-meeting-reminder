@@ -20,10 +20,11 @@ target_date = today + timedelta(days=REMINDER_DAYS)
 upcoming = df[df["Date"] == target_date]
 
 for _, row in upcoming.iterrows():
+    formatted_date = row["Date"].strftime("%A, %B %d")
     message = (
         f"👋 Hej{row['Speaker']}!\n\n"
         f"Just a reminder that you’re up next to present at the group meeting "
-        f"on *{row['Date']}*. "
+        f"on *{formatted_date}*. "
         f"Thanks!"
     )
 
